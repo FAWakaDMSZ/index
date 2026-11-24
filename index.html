@@ -34,17 +34,17 @@
       min-height: 100vh;
     }
 
-    /* Foto latar belakang samar (watermark foto bersama) */
+    /* Logo latar belakang samar (watermark Karsa Yustisia) */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      background-image: url('fotokita.jpg'); /* Ganti dengan nama file foto kita */
-      background-size: cover;
+      background-image: url('logodpm.jpeg');
+      background-size: min(72vw, 520px);
       background-position: center center;
       background-repeat: no-repeat;
-      opacity: 0.10;
-      filter: grayscale(15%);
+      opacity: 0.06;
+      filter: grayscale(10%);
       pointer-events: none;
       z-index: 0;
     }
@@ -167,6 +167,45 @@
       font-size: 0.82rem;
       font-weight: 700;
     }
+
+    .header-links {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .header-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 15px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(212, 175, 55, 0.75);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 600;
+      backdrop-filter: blur(6px);
+      transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .header-link-btn:hover {
+      background: var(--gold);
+      color: var(--maroon-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    .header-link-btn svg {
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+    }
+
 
     .filter-wrapper {
       max-width: 1120px;
@@ -737,15 +776,196 @@
       border-top: 1px solid var(--border);
       background: rgba(255, 255, 255, 0.95);
     }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .info-card {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(4px);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--maroon);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(70, 9, 15, 0.06);
+    }
+
+    .info-card.gold-accent {
+      border-top-color: var(--gold);
+    }
+
+    .info-card h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--maroon-dark);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-card p,
+    .info-card li {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .info-card ul,
+    .info-card ol {
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .ref-tag {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--maroon);
+      background: #fae8ea;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .pillar-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .pillar-chip {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #6b4e00;
+      background: var(--gold-soft);
+      border: 1px solid rgba(212, 175, 55, 0.55);
+      padding: 5px 11px;
+      border-radius: 999px;
+    }
+
+    .org-diagram {
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(70, 9, 15, 0.06);
+    }
+
+    .org-tier {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .org-node {
+      background: linear-gradient(135deg, var(--maroon-dark), var(--maroon));
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 12px;
+      text-align: center;
+      border: 1.5px solid var(--gold);
+      max-width: 440px;
+      width: 100%;
+    }
+
+    .org-node.light {
+      background: #fdfaf7;
+      color: var(--text);
+      border: 1.5px solid var(--maroon);
+    }
+
+    .org-node strong {
+      display: block;
+      font-size: 0.94rem;
+    }
+
+    .org-node span {
+      font-size: 0.79rem;
+      opacity: 0.9;
+    }
+
+    .org-connector {
+      width: 2px;
+      height: 18px;
+      background: var(--gold);
+    }
+
+    .org-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      width: 100%;
+    }
+
+    .jobdesc-list {
+      margin-bottom: 22px;
+    }
+
+    .komisi-scope {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 12px;
+      padding: 10px 12px;
+      background: #fdfaf7;
+      border-left: 3px solid var(--gold);
+      border-radius: 8px;
+    }
+
+    .section-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 26px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--border);
+    }
+
+    .nav-step-btn {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--maroon-dark);
+      font-family: inherit;
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 9px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .nav-step-btn:hover {
+      background: var(--maroon);
+      color: #fff;
+      border-color: var(--maroon);
+    }
+
   </style>
 </head>
 <body>
 
   <!-- TOMBOL AUDIO DI UJUNG KANAN ATAS -->
-  <audio id="bgAudio" autoplay loop>
+  <audio id="bgAudio" loop preload="auto">
     <source src="persona5lp.mp3" type="audio/mpeg">
   </audio>
-  <button type="button" id="audioToggle" class="audio-btn" onclick="toggleAudio()">🔊</button>
+  <button type="button" id="audioToggle" class="audio-btn" onclick="toggleAudio(event)" aria-label="Putar atau matikan musik latar">🔇 Putar Musik</button>
 
   <header>
     <img src="logodpm.jpeg" alt="Logo DPM-FH Karsa Yustisia" class="logo-dpm" />
@@ -756,23 +976,278 @@
     <div class="header-meta">
       <div class="badge-period">PERIODE 2026 / 2027</div>
     </div>
+
+    <div class="header-links">
+      <a href="https://www.instagram.com/dpmfhunmermlg" target="_blank" rel="noopener noreferrer" class="header-link-btn" aria-label="Instagram DPM-FH UNMER Malang">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+        <span>Instagram</span>
+      </a>
+
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSet5mA0Z25OVp3OtVBYNHEeWTBryQ5U2DKBvotyRwtQPLblKw/viewform" target="_blank" rel="noopener noreferrer" class="header-link-btn" aria-label="Form Aspirasi Mahasiswa">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 11l18-5v12L3 14v-3z"></path>
+          <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path>
+        </svg>
+        <span>Aspirasi</span>
+      </a>
+
+      <a href="https://linktr.ee/DPMFH" target="_blank" rel="noopener noreferrer" class="header-link-btn" aria-label="Linktree DPM-FH">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2v10"></path>
+          <path d="M12 7l5-4"></path>
+          <path d="M12 7L7 3"></path>
+          <path d="M12 12l6 2"></path>
+          <path d="M12 12l-6 2"></path>
+          <path d="M12 12v10"></path>
+        </svg>
+        <span>Linktree</span>
+      </a>
+
+      <a href="https://bit.ly/4wWRlBb" target="_blank" rel="noopener noreferrer" class="header-link-btn" aria-label="Detail Komisi DPM-FH">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="8" y1="13" x2="16" y2="13"></line>
+          <line x1="8" y1="17" x2="16" y2="17"></line>
+        </svg>
+        <span>Detail Komisi</span>
+      </a>
+    </div>
   </header>
 
   <div class="filter-wrapper">
-    <div class="filter-bar">
-      <button type="button" class="filter-btn active" onclick="filterData('all', this)">Semua</button>
-      <button type="button" class="filter-btn" onclick="filterData('bph', this)">Badan Pengurus Harian</button>
-      <button type="button" class="filter-btn" onclick="filterData('komisi', this)">Komisi A – E</button>
+    <div class="filter-bar" role="tablist" aria-label="Navigasi Bagian Profil DPM-FH">
+      <button type="button" class="filter-btn active" data-target="bagian1" onclick="filterData('bagian1', this)">I. Mengenal DPM FH</button>
+      <button type="button" class="filter-btn" data-target="bagian2" onclick="filterData('bagian2', this)">II. Kabinet Karsa Yustisia</button>
+      <button type="button" class="filter-btn" data-target="bagian3" onclick="filterData('bagian3', this)">III. Struktur Kepengurusan</button>
+      <button type="button" class="filter-btn" data-target="bagian4" onclick="filterData('bagian4', this)">IV. Badan Pengurus Harian</button>
+      <button type="button" class="filter-btn" data-target="bagian5" onclick="filterData('bagian5', this)">V. Komisi & Keanggotaan</button>
     </div>
   </div>
 
   <main>
-    <!-- BADAN PENGURUS HARIAN -->
-    <section class="section-block" data-category="bph">
+    <!-- BAGIAN I: MENGENAL DPM FH -->
+    <section class="section-block" data-category="bagian1">
       <div class="section-header">
         <span class="section-accent"></span>
-        <h2>Badan Pengurus Harian</h2>
+        <div>
+          <h2>Bagian I — Mengenal DPM FH</h2>
+          <p class="section-subtitle">Definisi, kedudukan, fungsi, tugas, wewenang, dan hak berdasarkan AD/ART KMUM &amp; Peraturan Organisasi</p>
+        </div>
       </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Definisi &amp; Kedudukan</h3>
+          <p><strong>Dewan Perwakilan Mahasiswa Fakultas Hukum (DPM-FH)</strong> adalah Lembaga Tinggi Legislatif mahasiswa di tingkat Fakultas Hukum dalam lingkungan Keluarga Mahasiswa Universitas Merdeka Malang (KMUM).</p>
+          <p style="margin-top:8px;">Dalam tata kelola kemahasiswaan, DPM-FH berkedudukan sejajar dan bermitra koordinatif dengan BEM-FH, mengawasi BEM-FH serta HMJ/HMP, dan berkoordinasi secara vertikal dengan DPM Universitas (DPMU).</p>
+          <span class="ref-tag">AD Pasal 5 ayat 4 · ART Pasal 49–50</span>
+        </div>
+
+        <div class="info-card gold-accent">
+          <h3>Fungsi Utama</h3>
+          <ul>
+            <li><strong>Fungsi Legislasi:</strong> Menyusun dan menetapkan rancangan peraturan kelembagaan di tingkat fakultas.</li>
+            <li><strong>Fungsi Anggaran:</strong> Mengajukan, menelaah, dan mengontrol kebijakan keuangan serta anggaran kemahasiswaan.</li>
+            <li><strong>Fungsi Pengawasan:</strong> Mengawal jalannya program kerja BEMF, HMJ, dan HMP agar selaras dengan GBHKO dan ketetapan SUM-F.</li>
+          </ul>
+          <span class="ref-tag">AD/ART KMUM Pasal 22 &amp; Pasal 49</span>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Tugas DPM-FH</h3>
+          <ol>
+            <li>Mengawasi BEMF, HMJ, dan HMP dalam melaksanakan GBHKO dan peraturan yang ditetapkan oleh Sidang Umum Mahasiswa Fakultas (SUM-F).</li>
+            <li>Menyerap, menampung, dan merumuskan aspirasi Mahasiswa Fakultas untuk disalurkan kepada pihak-pihak terkait.</li>
+            <li>Mensosialisasikan keputusan dan peraturan kepada pihak-pihak terkait.</li>
+          </ol>
+          <span class="ref-tag">ART KMUM Pasal 49</span>
+        </div>
+
+        <div class="info-card gold-accent">
+          <h3>Wewenang &amp; Hak Anggota</h3>
+          <ol>
+            <li>Mengeluarkan <strong>Memorandum 1</strong> (batas 2 minggu) hingga <strong>Memorandum 2</strong> (batas 1 minggu) apabila BEMF menyimpang dari arah kebijakan SUM-F, dan berwenang menggelar <strong>Sidang Istimewa DPMF</strong> bila tidak diindahkan.</li>
+            <li>Menjalin koordinasi dengan Lembaga Legislatif di tingkat DPMU serta mewakili mahasiswa fakultas secara eksternal untuk urusan legislatif.</li>
+            <li>Memiliki hak bicara, hak suara, serta <strong>Hak Inisiatif, Hak Angket, Hak Bertanya, Hak Petisi, dan Hak Budget</strong>.</li>
+          </ol>
+          <span class="ref-tag">ART KMUM Pasal 50 &amp; Pasal 54</span>
+        </div>
+      </div>
+
+      <div class="section-nav">
+        <span></span>
+        <button type="button" class="nav-step-btn" onclick="goToBagian('bagian2')">Lanjut ke Bagian II: Kabinet Karsa Yustisia →</button>
+      </div>
+    </section>
+
+    <!-- BAGIAN II: KABINET KARSA YUSTISIA -->
+    <section class="section-block hidden" data-category="bagian2">
+      <div class="section-header">
+        <span class="section-accent"></span>
+        <div>
+          <h2>Bagian II — Kabinet Karsa Yustisia</h2>
+          <p class="section-subtitle">Filosofi nama, visi, misi, nilai dasar, dan arah gerak kepengurusan periode 2026/2027</p>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card gold-accent">
+          <h3>Makna Nama &amp; Filosofi Kabinet</h3>
+          <p><strong>Karsa Yustisia</strong> (<em>Karsa Keadilan</em>) memadukan makna <em>karsa</em> (kehendak, tekad, dan daya cipta yang kuat) dengan <em>yustisia</em> (nilai-nilai keadilan dan supremasi hukum).</p>
+          <p style="margin-top:8px;">Terwujud dalam lambang kepalan tangan yang menjunjung timbangan keadilan di atas perisai dan sayap maroon–emas: simbol keberanian moral mahasiswa hukum untuk mengawal aspirasi secara objektif, tegas, dan berintegritas.</p>
+          <span class="ref-tag">Identitas Kabinet 2026/2027</span>
+        </div>
+
+        <div class="info-card">
+          <h3>Visi &amp; Misi Landasan KMUM</h3>
+          <p><strong>Visi:</strong> Membentuk mahasiswa yang demokratis, egaliter, humanis, dan transparan yang bernafaskan <em>Bhirawa Anoraga</em> yang mewujudkan Tridharma Perguruan Tinggi.</p>
+          <ul style="margin-top:8px;">
+            <li>Menciptakan kondisi lingkungan yang partisipatif.</li>
+            <li>Mewujudkan persamaan di depan hukum.</li>
+            <li>Mengedepankan nilai-nilai kebersamaan dan kemanusiaan.</li>
+            <li>Membangun iklim lembaga kemahasiswaan yang akuntabel dan transparan.</li>
+          </ul>
+          <span class="ref-tag">AD KMUM Pasal 6</span>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Nilai &amp; Karakter Kerja Mahasiswa</h3>
+          <p>Berdasarkan Pola Dasar Haluan Kerja KMUM, setiap gerak organisasi diarahkan untuk membentuk karakter mahasiswa yang memiliki lima ciri utama:</p>
+          <div class="pillar-chips">
+            <span class="pillar-chip">Mandiri</span>
+            <span class="pillar-chip">Sadar IPTEK</span>
+            <span class="pillar-chip">Kreatif</span>
+            <span class="pillar-chip">Berwawasan Kerakyatan</span>
+            <span class="pillar-chip">Integritas yang Tinggi</span>
+          </div>
+          <span class="ref-tag">GBHKO KMUM Bab II Bagian B</span>
+        </div>
+
+        <div class="info-card gold-accent">
+          <h3>Arah Gerak &amp; Prioritas</h3>
+          <ul>
+            <li>Peningkatan aktivitas yang menyangkut kesejahteraan dan kepentingan mahasiswa.</li>
+            <li>Pengembangan kreativitas, intelektualitas, dan daya kritis mahasiswa hukum.</li>
+            <li>Kepedulian terhadap permasalahan kemasyarakatan serta pengabdian masyarakat.</li>
+            <li>Menjaga asas musyawarah, keterbukaan, keadilan, kemitraan, dan pengkaderan.</li>
+          </ul>
+          <span class="ref-tag">GBHKO KMUM Bab II–III</span>
+        </div>
+      </div>
+
+      <div class="section-nav">
+        <button type="button" class="nav-step-btn" onclick="goToBagian('bagian1')">← Kembali ke Bagian I</button>
+        <button type="button" class="nav-step-btn" onclick="goToBagian('bagian3')">Lanjut ke Bagian III: Struktur Kepengurusan →</button>
+      </div>
+    </section>
+
+    <!-- BAGIAN III: STRUKTUR KEPENGURUSAN -->
+    <section class="section-block hidden" data-category="bagian3">
+      <div class="section-header">
+        <span class="section-accent"></span>
+        <div>
+          <h2>Bagian III — Struktur Kepengurusan</h2>
+          <p class="section-subtitle">Susunan organisasi, pembagian kedudukan, alat kelengkapan, dan garis koordinasi kelembagaan</p>
+        </div>
+      </div>
+
+      <div class="org-diagram">
+        <div class="org-tier">
+          <div class="org-node">
+            <strong>SUM-F &amp; SPM-F (Forum Permusyawaratan Fakultas)</strong>
+            <span>Menetapkan GBHKO Fakultas, melantik pimpinan terpilih, dan mengevaluasi LPT/LPJ akhir periode (ART Pasal 66)</span>
+          </div>
+          <div class="org-connector"></div>
+          <div class="org-node">
+            <strong>Badan Pengurus Harian (BPH) DPM-FH</strong>
+            <span>Ketua Umum · Sekretaris Jenderal · Wakil Sekretaris Jenderal · Bendahara Umum</span>
+          </div>
+          <div class="org-connector"></div>
+          <div class="org-row">
+            <div class="org-node light">
+              <strong>Komisi A</strong>
+              <span>Pengkajian Kebijakan &amp; Strategi Gerakan</span>
+            </div>
+            <div class="org-node light">
+              <strong>Komisi B</strong>
+              <span>Pendidikan, Penelitian, Advokasi &amp; Kesma</span>
+            </div>
+            <div class="org-node light">
+              <strong>Komisi C</strong>
+              <span>Hubungan Mahasiswa &amp; Masyarakat</span>
+            </div>
+            <div class="org-node light">
+              <strong>Komisi D</strong>
+              <span>Pengembangan Organisasi</span>
+            </div>
+            <div class="org-node light">
+              <strong>Komisi E</strong>
+              <span>Pengawasan Anggaran</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Sifat &amp; Perangkat Organisasi</h3>
+          <ul>
+            <li><strong>Sifat Struktur (ART Pasal 20):</strong> Hierarkis, interdependensi, dan koordinatif, baik secara internal maupun eksternal.</li>
+            <li><strong>Perangkat DPMF (ART Pasal 56):</strong> Terdiri dari Ketua, Sekretaris Jenderal, Bendahara, serta Komisi A–E yang disebut sebagai Pengurus Harian.</li>
+            <li><strong>Alat Kelengkapan (ART Pasal 57):</strong> Sidang Pleno DPMF, Rapat Pimpinan (Ketua bersama Koordinator Komisi), Rapat Komisi, dan Rapat Koordinasi dengan BEMF.</li>
+          </ul>
+          <span class="ref-tag">ART KMUM Pasal 20, 56 &amp; 57</span>
+        </div>
+
+        <div class="info-card gold-accent">
+          <h3>Garis Koordinasi &amp; Hubungan Kerja</h3>
+          <ul>
+            <li><strong>Mitra Sejajar BEM-FH:</strong> Hubungan koordinatif dalam perencanaan kebijakan serta fungsi pengawasan legislatif (ART Pasal 64).</li>
+            <li><strong>Pengawasan Hasil Kerja &amp; LPJ:</strong> BEMF dan HMJ/HMP wajib menyerahkan hasil rapat kerja dan salinan LPJ kepada DPMF untuk pengawasan dan kearsipan (PO Pasal 15–16).</li>
+            <li><strong>Koordinasi Vertikal DPMU:</strong> Menyalurkan hasil kontrol anggaran dan delegasi fakultas ke tingkat universitas (ART Pasal 50 &amp; 53).</li>
+          </ul>
+          <span class="ref-tag">ART Pasal 64 · PO Pasal 15–16</span>
+        </div>
+      </div>
+
+      <div class="section-nav">
+        <button type="button" class="nav-step-btn" onclick="goToBagian('bagian2')">← Kembali ke Bagian II</button>
+        <button type="button" class="nav-step-btn" onclick="goToBagian('bagian4')">Lanjut ke Bagian IV: BPH →</button>
+      </div>
+    </section>
+
+    <!-- BAGIAN IV: BADAN PENGURUS HARIAN (BPH) -->
+    <section class="section-block hidden" data-category="bagian4">
+      <div class="section-header">
+        <span class="section-accent"></span>
+        <div>
+          <h2>Bagian IV — Badan Pengurus Harian (BPH)</h2>
+          <p class="section-subtitle">Tugas pokok berdasarkan Peraturan Organisasi Pasal 15 serta profil pengurus harian periode 2026/2027</p>
+        </div>
+      </div>
+
+      <div class="info-grid jobdesc-list">
+        <div class="info-card">
+          <h3>Tugas &amp; Tanggung Jawab BPH (PO Pasal 15)</h3>
+          <ul>
+            <li><strong>Ketua Umum:</strong> Penanggung jawab dan koordinator umum dalam pelaksanaan tugas-tugas internal dan eksternal organisasi yang bersifat umum pada semua tingkatan struktural.</li>
+            <li><strong>Sekretaris Jenderal:</strong> Membantu Ketua dalam tugas internal/eksternal, menggantikan Ketua bila berhalangan, serta mengoordinasikan ketatausahaan, data pustaka, kearsipan, dan administrasi kesekretariatan.</li>
+            <li><strong>Wakil Sekretaris Jenderal:</strong> Membantu Sekretaris Jenderal dalam bidang ketatausahaan, data pustaka, kearsipan, dan administrasi kesekretariatan.</li>
+            <li><strong>Bendahara Umum:</strong> Koordinator kegiatan bagian keuangan dan perlengkapan organisasi.</li>
+          </ul>
+          <span class="ref-tag">Peraturan Organisasi Pasal 15 ayat 1–3</span>
+        </div>
+      </div>
+
       <div class="grid-cards">
         <div class="member-card">
           <img src="foto/24010000013.jpg" alt="Jonathan Ferdin Karan" class="member-photo" onerror="this.src='logodpm.jpeg'">
@@ -815,13 +1290,21 @@
           </div>
         </div>
       </div>
+
+      <div class="section-nav">
+        <button type="button" class="nav-step-btn" onclick="goToBagian('bagian3')">← Kembali ke Bagian III</button>
+        <button type="button" class="nav-step-btn" onclick="goToBagian('bagian5')">Lanjut ke Bagian V: Komisi &amp; Keanggotaan →</button>
+      </div>
     </section>
 
-    <!-- STRUKTUR KOMISI -->
-    <section class="section-block" data-category="komisi">
+    <!-- BAGIAN V: KOMISI DAN KEANGGOTAAN -->
+    <section class="section-block hidden" data-category="bagian5">
       <div class="section-header">
         <span class="section-accent"></span>
-        <h2>Struktur Komisi</h2>
+        <div>
+          <h2>Bagian V — Komisi dan Keanggotaan</h2>
+          <p class="section-subtitle">Ruang lingkup kerja Komisi A sampai E sesuai AD/ART &amp; PO Pasal 15 beserta daftar anggota</p>
+        </div>
       </div>
 
       <div class="komisi-grid">
@@ -831,6 +1314,7 @@
             <h3>Komisi A</h3>
             <span class="komisi-count">Pengkajian Kebijakan dan Strategi Gerakan</span>
           </div>
+          <p class="komisi-scope">Berfungsi meningkatkan partisipasi aktif dalam menyikapi dan mengkritisi kebijakan birokrasi maupun lembaga kemahasiswaan, merumuskan konsep baru demi kemajuan mahasiswa, serta berhak meminta hasil rapat kerja dari BEMF dan HMJ/HMP sebagai fungsi pengawasan (PO Pasal 15 ayat 4).</p>
           <div class="komisi-item">
             <img src="foto/25010000152.jpg" alt="Indra Haryanto Nurlette" class="komisi-photo" onerror="this.src='logodpm.jpeg'">
             <div class="komisi-info">
@@ -860,6 +1344,7 @@
             <h3>Komisi B</h3>
             <span class="komisi-count">Pendidikan, Penelitian, Advokasi dan Kesejahteraan Mahasiswa</span>
           </div>
+          <p class="komisi-scope">Berperan memberikan paradigma baru dalam dunia pendidikan melalui penelitian dan advokasi, serta memperjuangkan kesejahteraan mahasiswa termasuk fasilitas demi kelancaran proses belajar-mengajar (PO Pasal 15 ayat 5).</p>
           <div class="komisi-item">
             <img src="komisiaco.jpeg" alt="Arya Hilmi Rosyad" class="komisi-photo" onerror="this.src='logodpm.jpeg'">
             <div class="komisi-info">
@@ -899,6 +1384,7 @@
             <h3>Komisi C</h3>
             <span class="komisi-count">Hubungan Mahasiswa dan Masyarakat</span>
           </div>
+          <p class="komisi-scope">Berperan menjaga hubungan antara mahasiswa dan masyarakat agar dapat memberikan masukan, saran, dan kritik terhadap lembaga kemahasiswaan maupun kampus Universitas Merdeka Malang pada umumnya (PO Pasal 15 ayat 6).</p>
           <div class="komisi-item">
             <img src="foto/24010000015.jpg" alt="Dinul Qoyyimah Wahdaniyah" class="komisi-photo" onerror="this.src='logodpm.jpeg'">
             <div class="komisi-info">
@@ -938,6 +1424,7 @@
             <h3>Komisi D</h3>
             <span class="komisi-count">Pengembangan Organisasi</span>
           </div>
+          <p class="komisi-scope">Berperan mengembangkan organisasi baik secara internal maupun eksternal, serta meningkatkan pembinaan, penguasaan administrasi, dan manajemen organisasi (PO Pasal 15 ayat 7).</p>
           <div class="komisi-item">
             <img src="foto/25010000064.jpg" alt="Herlina Anjelina" class="komisi-photo" onerror="this.src='logodpm.jpeg'">
             <div class="komisi-info">
@@ -977,6 +1464,7 @@
             <h3>Komisi E</h3>
             <span class="komisi-count">Pengawasan Anggaran</span>
           </div>
+          <p class="komisi-scope">Melaksanakan fungsi controlling dan budgeting anggaran terhadap lembaga kemahasiswaan maupun birokrasi demi transparansi, serta berhak meminta dan menerima LPJ kegiatan maupun akhir periode dari BEMF dan HMJ/HMP (PO Pasal 15 ayat 8).</p>
           <div class="komisi-item">
             <img src="foto/24010000006.jpg" alt="Shakira Sendy Aulia Lawalata" class="komisi-photo" onerror="this.src='logodpm.jpeg'">
             <div class="komisi-info">
@@ -1009,6 +1497,11 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="section-nav">
+        <button type="button" class="nav-step-btn" onclick="goToBagian('bagian4')">← Kembali ke Bagian IV</button>
+        <button type="button" class="nav-step-btn" onclick="goToBagian('bagian1')">↺ Kembali ke Bagian I</button>
       </div>
     </section>
   </main>
@@ -1047,21 +1540,32 @@
   </div>
 
   <footer>
-    @dpmfhunmermlg | Jumbatan Suara Pengawal Hak Mahasiswa | linktr.ee/DPMFH
+    @dpmfhunmermlg | Jembatan Suara Pengawal Hak Mahasiswa | linktr.ee/DPMFH
   </footer>
 
   <script>
     function filterData(kategori, tombol) {
       document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-      tombol.classList.add('active');
+      if (tombol) {
+        tombol.classList.add('active');
+      }
 
       document.querySelectorAll('.section-block').forEach(sec => {
-        if (kategori === 'all' || sec.dataset.category === kategori) {
+        if (sec.dataset.category === kategori) {
           sec.classList.remove('hidden');
         } else {
           sec.classList.add('hidden');
         }
       });
+    }
+
+    function goToBagian(kategori) {
+      const targetBtn = document.querySelector('.filter-btn[data-target="' + kategori + '"]');
+      filterData(kategori, targetBtn);
+      const wrapper = document.querySelector('.filter-wrapper');
+      if (wrapper) {
+        wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
 
     // === DATA SOSOK ANGGOTA BPH & KOMISI A-E (RUANG ~200 KATA) ===
@@ -1274,29 +1778,46 @@
 
     const audio = document.getElementById('bgAudio');
     const audioBtn = document.getElementById('audioToggle');
+    let audioUnlocked = false;
 
-    function toggleAudio() {
+    function updateAudioBtn(isPlaying) {
+      audioBtn.textContent = isPlaying ? '🔊 Musik Aktif' : '🔇 Putar Musik';
+    }
+
+    function toggleAudio(e) {
+      if (e) e.stopPropagation();
+      audioUnlocked = true;
       if (audio.paused) {
-        audio.play();
-        audioBtn.textContent = '🔊 ';
+        audio.play().then(() => {
+          updateAudioBtn(true);
+        }).catch(() => {
+          updateAudioBtn(false);
+        });
       } else {
         audio.pause();
-        audioBtn.textContent = '🔇';
+        updateAudioBtn(false);
       }
+    }
+
+    function tryUnlockAudio(e) {
+      if (audioUnlocked || (e && e.target === audioBtn)) return;
+      audio.play().then(() => {
+        audioUnlocked = true;
+        updateAudioBtn(true);
+        ['click', 'touchend', 'keydown'].forEach(evt => {
+          window.removeEventListener(evt, tryUnlockAudio);
+        });
+      }).catch(() => {});
     }
 
     window.addEventListener('DOMContentLoaded', () => {
       audio.play().then(() => {
-        audioBtn.textContent = '🔊';
+        audioUnlocked = true;
+        updateAudioBtn(true);
       }).catch(() => {
-        audioBtn.textContent = '🔇';
-        ['click', 'touchstart', 'scroll'].forEach(evt => {
-          window.addEventListener(evt, function startOnce() {
-            audio.play().then(() => {
-              audioBtn.textContent = '🔊';
-            }).catch(() => {});
-            window.removeEventListener(evt, startOnce);
-          }, { once: true });
+        updateAudioBtn(false);
+        ['click', 'touchend', 'keydown'].forEach(evt => {
+          window.addEventListener(evt, tryUnlockAudio, { passive: true });
         });
       });
     });
