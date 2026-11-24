@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kepengurusan DPM-FH UNMER Malang 2026/2027</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --maroon: #6e121b;
+      --maroon-dark: #46090f;
+      --maroon-light: #961c28;
+      --gold: #d4af37;
+      --gold-soft: #f7ebd0;
+      --bg: #f8f6f4;
+      --card: #ffffff;
+      --text: #1e1b18;
+      --muted: #665e57;
+      --border: #e7dfd8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Foto latar belakang samar (watermark foto bersama) */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: url('fotokita.jpg'); /* Ganti dengan nama file foto kita */
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      opacity: 0.10;
+      filter: grayscale(15%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header,
+    .filter-wrapper,
+    main,
+    footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes masukHalus {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes logoMuncul {
+      from {
+        opacity: 0;
+        transform: scale(0.88) translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    /* === TOMBOL AUDIO DI UJUNG KANAN ATAS === */
+    .audio-btn {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 900;
+      background: rgba(70, 9, 15, 0.88);
+      backdrop-filter: blur(8px);
+      border: 1.5px solid var(--gold);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      transition: all 0.25s ease;
+    }
+
+    .audio-btn:hover {
+      background: var(--gold);
+      color: var(--maroon-dark);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 600px) {
+      .audio-btn {
+        top: 12px;
+        right: 12px;
+        font-size: 0.72rem;
+        padding: 6px 11px;
+      }
+      header {
+        padding-top: 64px;
+      }
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--maroon-dark) 0%, var(--maroon) 55%, var(--maroon-light) 100%);
+      color: #fff;
+      padding: 58px 20px 76px;
+      text-align: center;
+    }
+
+    .logo-dpm {
+      width: 112px;
+      height: 112px;
+      object-fit: contain;
+      background: #ffffff;
+      padding: 8px;
+      border-radius: 22px;
+      border: 3px solid var(--gold);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+      margin-bottom: 16px;
+      animation: logoMuncul 0.7s ease both;
+    }
+
+    header h1 {
+      font-size: clamp(1.5rem, 3.4vw, 2.35rem);
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-size: 1.08rem;
+      color: #f3e8e9;
+      margin-bottom: 16px;
+    }
+
+    .header-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .badge-period {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.7);
+      color: var(--gold-soft);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .filter-wrapper {
+      max-width: 1120px;
+      margin: -26px auto 34px;
+      padding: 0 18px;
+    }
+
+    .filter-bar {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(6px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: 0 10px 28px rgba(70, 9, 15, 0.12);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 9px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.25s ease;
+    }
+
+    .filter-btn:hover {
+      background: #f5ecec;
+      color: var(--maroon);
+    }
+
+    .filter-btn.active {
+      background: var(--maroon);
+      color: #fff;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto 70px;
+      padding: 0 18px;
+    }
+
+    .section-block {
+      margin-bottom: 42px;
+      animation: masukHalus 0.6s ease both;
+    }
+
+    .section-block.hidden {
+      display: none;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .section-accent {
+      width: 6px;
+      height: 28px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--gold), var(--maroon));
+    }
+
+    .section-header h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--maroon-dark);
+    }
+
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    /* === STYLE KARTU ANGGOTA + FOTO === */
+    .member-card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(4px);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--maroon);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(70, 9, 15, 0.06);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .member-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 32px rgba(110, 18, 27, 0.14);
+      border-left-color: var(--gold);
+    }
+
+    .member-photo {
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top center;
+      border: 2.5px solid var(--gold);
+      background-color: #f0e8e1;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .member-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .member-num {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--maroon);
+      background: #fae8ea;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+
+    .co-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #6b4e00;
+      background: var(--gold-soft);
+      border: 1px solid rgba(212, 175, 55, 0.55);
+      padding: 2px 8px;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+
+    .member-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.35;
+    }
+
+    .member-role {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .member-nim {
+      margin-top: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--maroon-light);
+    }
+
+    /* === TOMBOL SELENGKAPNYA === */
+    .detail-btn {
+      margin-top: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, var(--maroon), var(--maroon-light));
+      color: #fff;
+      border: none;
+      font-family: inherit;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 6px 13px;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(110, 18, 27, 0.18);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .detail-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      background: linear-gradient(135deg, var(--maroon-dark), var(--maroon));
+      box-shadow: 0 6px 16px rgba(110, 18, 27, 0.28);
+    }
+
+    .detail-btn:active {
+      transform: scale(0.97);
+    }
+
+    .detail-btn span {
+      transition: transform 0.2s ease;
+    }
+
+    .detail-btn:hover span {
+      transform: translateX(3px);
+    }
+
+    /* === STYLE KOMISI + FOTO === */
+    .komisi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      gap: 20px;
+    }
+
+    .komisi-box {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(4px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(70, 9, 15, 0.06);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .komisi-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 32px rgba(110, 18, 27, 0.12);
+    }
+
+    .komisi-title {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .komisi-title h3 {
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: var(--maroon);
+    }
+
+    .komisi-count {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      background: var(--bg);
+      padding: 4px 10px;
+      border-radius: 8px;
+      line-height: 1.4;
+    }
+
+    .komisi-item {
+      padding: 12px;
+      border-radius: 12px;
+      background: rgba(252, 250, 248, 0.96);
+      border: 1px solid #f0e8e1;
+      margin-bottom: 10px;
+      transition: background 0.2s ease, transform 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .komisi-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .komisi-item:hover {
+      background: #fdf4f5;
+      transform: translateX(4px);
+    }
+
+    .komisi-photo {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top center;
+      border: 2px solid var(--maroon-light);
+      background-color: #f0e8e1;
+      flex-shrink: 0;
+    }
+
+    .komisi-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .komisi-item-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .komisi-person {
+      font-weight: 700;
+      font-size: 0.94rem;
+      line-height: 1.3;
+    }
+
+    .komisi-nim {
+      font-size: 0.81rem;
+      color: var(--muted);
+      font-weight: 600;
+      margin-top: 3px;
+    }
+
+    /* === JENDELA BARU PROFIL SOSOK (~200 KATA) === */
+    @keyframes popWindow {
+      0% {
+        opacity: 0;
+        transform: scale(0.84) translateY(34px);
+      }
+      70% {
+        opacity: 1;
+        transform: scale(1.015) translateY(-3px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(24, 4, 7, 0.72);
+      backdrop-filter: blur(7px);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.28s ease, visibility 0.28s ease;
+    }
+
+    .modal-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 780px;
+  max-height: 92vh;
+  overflow-y: auto;
+  border-radius: 22px;
+  border: 1px solid rgba(212, 175, 55, 0.55);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
+  transform: scale(0.86) translateY(28px);
+  opacity: 0;
+  transition: transform 0.32s ease, opacity 0.28s ease;
+  position: relative;
+}
+
+    .modal-overlay.show .modal-card {
+      animation: popWindow 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .modal-banner {
+      background: linear-gradient(135deg, var(--maroon-dark) 0%, var(--maroon) 60%, var(--maroon-light) 100%);
+      height: 112px;
+      position: relative;
+    }
+
+    .modal-window-label {
+      position: absolute;
+      top: 16px;
+      left: 18px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      background: rgba(0, 0, 0, 0.24);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: rgba(0, 0, 0, 0.28);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .modal-close:hover {
+      background: var(--gold);
+      color: var(--maroon-dark);
+      transform: rotate(90deg);
+    }
+
+    .modal-avatar-wrap {
+      margin-top: -58px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .modal-avatar {
+      width: 116px;
+      height: 116px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top center;
+      border: 4px solid #fff;
+      box-shadow: 0 10px 26px rgba(70, 9, 15, 0.25);
+      background: #f0e8e1;
+    }
+
+.modal-profile-photo {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 18px;
+  border: 4px solid var(--gold);
+  display: block;
+  margin: 0 auto 18px;
+  background: #f0e8e1;
+  box-shadow: 0 10px 24px rgba(0,0,0,.18);
+}
+
+@media (max-width: 768px) {
+  .modal-profile-photo {
+    width: 170px;
+    height: 170px;
+  }
+}
+
+    .modal-body {
+      padding: 14px 24px 26px;
+      text-align: center;
+    }
+
+    .modal-badge {
+      display: inline-block;
+      background: var(--gold-soft);
+      color: #6b4e00;
+      border: 1px solid rgba(212, 175, 55, 0.65);
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .modal-name {
+      font-size: 1.28rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .modal-nim {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--maroon);
+      margin-top: 4px;
+    }
+
+    .modal-bio-box {
+      margin-top: 16px;
+      text-align: left;
+      background: #fdfaf7;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: 14px;
+      padding: 15px 17px;
+    }
+
+    .modal-bio-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .modal-bio-title {
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--maroon);
+    }
+
+    .modal-word-count {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+      background: #f2ece6;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .modal-bio-text {
+      font-size: 0.9rem;
+      line-height: 1.72;
+      color: var(--text);
+      white-space: pre-line;
+    }
+
+    .modal-meta-mini {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: var(--bg);
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .modal-meta-mini strong {
+      color: var(--text);
+    }
+
+    .modal-back-btn {
+      margin-top: 16px;
+      width: 100%;
+      padding: 11px;
+      border: none;
+      border-radius: 12px;
+      background: var(--maroon);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .modal-back-btn:hover {
+      background: var(--maroon-dark);
+    }
+
+    .modal-back-btn:active {
+      transform: scale(0.99);
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 18px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      border-top: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.95);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOMBOL AUDIO DI UJUNG KANAN ATAS -->
+  <audio id="bgAudio" autoplay loop>
+    <source src="persona5lp.mp3" type="audio/mpeg">
+  </audio>
+  <button type="button" id="audioToggle" class="audio-btn" onclick="toggleAudio()">🔊</button>
+
+  <header>
+    <img src="logodpm.jpeg" alt="Logo DPM-FH Karsa Yustisia" class="logo-dpm" />
+    <br>
+    <h1>DEWAN PERWAKILAN MAHASISWA</h1>
+    <p>FAKULTAS HUKUM - UNIVERSITAS MERDEKA MALANG</p>
+
+    <div class="header-meta">
+      <div class="badge-period">PERIODE 2026 / 2027</div>
+    </div>
+  </header>
+
+  <div class="filter-wrapper">
+    <div class="filter-bar">
+      <button type="button" class="filter-btn active" onclick="filterData('all', this)">Semua</button>
+      <button type="button" class="filter-btn" onclick="filterData('bph', this)">Badan Pengurus Harian</button>
+      <button type="button" class="filter-btn" onclick="filterData('komisi', this)">Komisi A – E</button>
+    </div>
+  </div>
+
+  <main>
+    <!-- BADAN PENGURUS HARIAN -->
+    <section class="section-block" data-category="bph">
+      <div class="section-header">
+        <span class="section-accent"></span>
+        <h2>Badan Pengurus Harian</h2>
+      </div>
+      <div class="grid-cards">
+        <div class="member-card">
+          <img src="foto/24010000013.jpg" alt="Jonathan Ferdin Karan" class="member-photo" onerror="this.src='logodpm.jpeg'">
+          <div class="member-info">
+            <span class="member-num">Ketua Umum</span>
+            <div class="member-name">Jonathan Ferdin Karan</div>
+            <div class="member-role">DPM-FH UNMER Malang</div>
+            <div class="member-nim">NIM: 24010000013</div>
+            <button type="button" class="detail-btn" onclick="openDetail('24010000013')">Selengkapnya <span>→</span></button>
+          </div>
+        </div>
+        <div class="member-card">
+          <img src="sekjen.jpeg" alt="Fawwazy Hassan Vendra" class="member-photo" onerror="this.src='logodpm.jpeg'">
+          <div class="member-info">
+            <span class="member-num">Sekretaris Jendral</span>
+            <div class="member-name">Fawwazy Hassan Vendra</div>
+            <div class="member-role">DPM-FH UNMER Malang</div>
+            <div class="member-nim">NIM: 24010000019</div>
+            <button type="button" class="detail-btn" onclick="openDetail('24010000019')">Selengkapnya <span>→</span></button>
+          </div>
+        </div>
+        <div class="member-card">
+          <img src="foto/25010000036.jpg" alt="Azril Ardiansyah" class="member-photo" onerror="this.src='logodpm.jpeg'">
+          <div class="member-info">
+            <span class="member-num">Wakil Sekretaris Jendral</span>
+            <div class="member-name">Azril Ardiansyah</div>
+            <div class="member-role">DPM-FH UNMER Malang</div>
+            <div class="member-nim">NIM: 25010000036</div>
+            <button type="button" class="detail-btn" onclick="openDetail('25010000036')">Selengkapnya <span>→</span></button>
+          </div>
+        </div>
+        <div class="member-card">
+          <img src="bendum.jpeg" alt="Tsalis Maulidiyah Nur Aini" class="member-photo" onerror="this.src='logodpm.jpeg'">
+          <div class="member-info">
+            <span class="member-num">Bendahara Umum</span>
+            <div class="member-name">Tsalis Maulidiyah Nur Aini</div>
+            <div class="member-role">DPM-FH UNMER Malang</div>
+            <div class="member-nim">NIM: 24010000020</div>
+            <button type="button" class="detail-btn" onclick="openDetail('24010000020')">Selengkapnya <span>→</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STRUKTUR KOMISI -->
+    <section class="section-block" data-category="komisi">
+      <div class="section-header">
+        <span class="section-accent"></span>
+        <h2>Struktur Komisi</h2>
+      </div>
+
+      <div class="komisi-grid">
+        <!-- KOMISI A -->
+        <div class="komisi-box">
+          <div class="komisi-title">
+            <h3>Komisi A</h3>
+            <span class="komisi-count">Pengkajian Kebijakan dan Strategi Gerakan</span>
+          </div>
+          <div class="komisi-item">
+            <img src="foto/25010000152.jpg" alt="Indra Haryanto Nurlette" class="komisi-photo" onerror="this.src='logodpm.jpeg'">
+            <div class="komisi-info">
+              <div class="komisi-item-head">
+                <span class="komisi-person">Indra Haryanto Nurlette</span>
+                <span class="co-badge">CO</span>
+              </div>
+              <div class="komisi-nim">NIM: 25010000152</div>
+              <button type="button" class="detail-btn" onclick="openDetail('25010000152')">Selengkapnya <span>→</span></button>
+            </div>
+          </div>
+          <div class="komisi-item">
+            <img src="foto/25010000025.jpg" alt="Kayla Azzahra" class="komisi-photo" onerror="this.src='logodpm.jpeg'">
+            <div class="komisi-info">
+              <div class="komisi-item-head">
+                <span class="komisi-person">Kayla Azzahra</span>
+              </div>
+              <div class="komisi-nim">NIM: 25010000025</div>
+              <button type="button" class="detail-btn" onclick="openDetail('25010000025')">Selengkapnya <span>→</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- KOMISI B -->
+        <div class="komisi-box">
+          <div class="komisi-title">
+            <h3>Komisi B</h3>
+            <span class="komisi-count">Pendidikan, Penelitian, Advokasi dan Kesejahteraan Mahasiswa</span>
+          </div>
+          <div class="komisi-item">
+            <img src="komisiaco.jpeg" alt="Arya Hilmi Rosyad" class="komisi-photo" onerror="this.src='logodpm.jpeg'">
+            <div class="komisi-info">
+              <div class="komisi-item-head">
+                <span class="komisi-person">Arya Hilmi Rosyad</span>
+                <span class="co-badge">CO</span>
+              </div>
+              <div class="komisi-nim">NIM: 25010000122</div>
+              <button type="button" class="detail-btn" onclick="openDetail('25010000122')">Selengkapnya <span>→</span></button>
+            </div>
+          </div>
+          <div class="komisi-item">
+            <img src="foto/25010000211.jpg" alt="Yolan Cristiani Nahak" class="komisi-photo" onerror="this.src='logodpm.jpeg'">
+            <div class="komisi-info">
+              <div class="komisi-item-head">
+                <span class="komisi-person">Yolan Cristiani Nahak</span>
+              </div>
+              <div class="komisi-nim">NIM: 25010000211</div>
+              <button type="button" class="detail-btn" onclick="openDetail('25010000211')">Selengkapnya <span>→</span></button>
+            </div>
+          </div>
+          <div class="komisi-item">
+            <img src="foto/25010000131.jpg" alt="Nur Azizah Salsabila" class="komisi-photo" onerror="this.src='logodpm.jpeg'">
+            <div class="komisi-info">
+              <div class="komisi-item-head">
+                <span class="komisi-person">Nur Azizah Salsabila</span>
+              </div>
+              <div class="komisi-nim">NIM: 25010000131</div>
+              <button type="button" class="detail-btn" onclick="openDetail('25010000131')">Selengkapnya <span>→</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- KOMISI C -->
+        <div class="komisi-box">
+          <div class="komisi-title">
+            <h3>Komisi C</h3>
+            <span class="komisi-count">Hubungan Mahasiswa dan Masyarakat</span>
+          </div>
+          <div class="komisi-item">
+            <img src="foto/24010000015.jpg" alt="Dinul Qoyyimah Wahdaniyah" class="komisi-photo" onerror="this.src='logodpm.jpeg'">
+            <div class="komisi-info">
+              <div class="komisi-item-head">
+                <span class="komisi-person">Dinul Qoyyimah Wahdaniyah</span>
+                <span class="co-badge">CO</span>
+              </div>
+              <div class="komisi-nim">NIM: 24010000015</div>
+              <button type="button" class="detail-btn" onclick="openDetail('24010000015')">Selengkapnya <span>→</span></button>
+            </div>
+          </div>
+          <div class="komisi-item">
+            <img src="foto/25010000192.jpg" alt="Kheisya Dentanaya Rizki Meilyta" class="komisi-photo" onerror="this.src='logodpm.jpeg'">
+            <div class="komisi-info">
+              <div class="komisi-item-head">
+                <span class="komisi-person">Kheisya Dentanaya Rizki Meilyta</span>
+              </div>
+              <div class="komisi-nim">NIM: 25010000192</div>
+              <button type="button" class="detail-btn" onclick="openDetail('25010000192')">Selengkapnya <span>→</span></button>
+            </div>
+          </div>
+          <div class="komisi-item">
+            <img src="foto/25010000039.jpg" alt="Nadinfah Belvana H.N" class="komisi-photo" onerror="this.src='logodpm.jpeg'">
+            <div class="komisi-info">
+              <div class="komisi-item-head">
+                <span class="komisi-person">Nadinfah Belvana H.N</span>
+              </div>
+              <div class="komisi-nim">NIM: 25010000039</div>
+              <button type="button" class="detail-btn" onclick="openDetail('25010000039')">Selengkapnya <span>→</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- KOMISI D -->
+        <div class="komisi-box">
+          <div class="komisi-title">
+            <h3>Komisi D</h3>
+            <span class="komisi-count">Pengembangan Organisasi</span>
+          </div>
+          <div class="komisi-item">
+            <img src="foto/25010000064.jpg" alt="Herlina Anjelina" class="komisi-photo" onerror="this.src='logodpm.jpeg'">
+            <div class="komisi-info">
+              <div class="komisi-item-head">
+                <span class="komisi-person">Herlina Anjelina</span>
+                <span class="co-badge">CO</span>
+              </div>
+              <div class="komisi-nim">NIM: 25010000064</div>
+              <button type="button" class="detail-btn" onclick="openDetail('25010000064')">Selengkapnya <span>→</span></button>
+            </div>
+          </div>
+          <div class="komisi-item">
+            <img src="foto/25010000144.jpg" alt="Peon Kulla" class="komisi-photo" onerror="this.src='logodpm.jpeg'">
+            <div class="komisi-info">
+              <div class="komisi-item-head">
+                <span class="komisi-person">Peon Kulla</span>
+              </div>
+              <div class="komisi-nim">NIM: 25010000144</div>
+              <button type="button" class="detail-btn" onclick="openDetail('25010000144')">Selengkapnya <span>→</span></button>
+            </div>
+          </div>
+          <div class="komisi-item">
+            <img src="foto/26010000181.jpg" alt="Gerilya Rafid Pratama" class="komisi-photo" onerror="this.src='logodpm.jpeg'">
+            <div class="komisi-info">
+              <div class="komisi-item-head">
+                <span class="komisi-person">Gerilya Rafid Pratama</span>
+              </div>
+              <div class="komisi-nim">NIM: 26010000181</div>
+              <button type="button" class="detail-btn" onclick="openDetail('26010000181')">Selengkapnya <span>→</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- KOMISI E -->
+        <div class="komisi-box">
+          <div class="komisi-title">
+            <h3>Komisi E</h3>
+            <span class="komisi-count">Pengawasan Anggaran</span>
+          </div>
+          <div class="komisi-item">
+            <img src="foto/24010000006.jpg" alt="Shakira Sendy Aulia Lawalata" class="komisi-photo" onerror="this.src='logodpm.jpeg'">
+            <div class="komisi-info">
+              <div class="komisi-item-head">
+                <span class="komisi-person">Shakira Sendy Aulia Lawalata</span>
+                <span class="co-badge">CO</span>
+              </div>
+              <div class="komisi-nim">NIM: 24010000006</div>
+              <button type="button" class="detail-btn" onclick="openDetail('24010000006')">Selengkapnya <span>→</span></button>
+            </div>
+          </div>
+          <div class="komisi-item">
+            <img src="foto/24010000153.jpg" alt="Eltria Natsya Ghello" class="komisi-photo" onerror="this.src='logodpm.jpeg'">
+            <div class="komisi-info">
+              <div class="komisi-item-head">
+                <span class="komisi-person">Eltria Natsya Ghello</span>
+              </div>
+              <div class="komisi-nim">NIM: 24010000153</div>
+              <button type="button" class="detail-btn" onclick="openDetail('24010000153')">Selengkapnya <span>→</span></button>
+            </div>
+          </div>
+          <div class="komisi-item">
+            <img src="foto/24010000148.jpg" alt="Chintia Hidayat Yapardi" class="komisi-photo" onerror="this.src='logodpm.jpeg'">
+            <div class="komisi-info">
+              <div class="komisi-item-head">
+                <span class="komisi-person">Chintia Hidayat Yapardi</span>
+              </div>
+              <div class="komisi-nim">NIM: 24010000148</div>
+              <button type="button" class="detail-btn" onclick="openDetail('24010000148')">Selengkapnya <span>→</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- JENDELA POP-UP PROFIL SOSOK -->
+  <div id="memberModal" class="modal-overlay" onclick="closeDetailOnBg(event)">
+    <div class="modal-card">
+      <div class="modal-banner">
+        <span class="modal-window-label">Profil Sosok Pria Ganteng FH UNMER</span>
+        <button type="button" class="modal-close" onclick="closeDetail()">✕</button>
+      </div>
+      <div class="modal-avatar-wrap">
+        <img id="modalPhoto" src="logodpm.jpeg" alt="Foto Anggota" class="modal-avatar" onerror="this.src='logodpm.jpeg'">
+      </div>
+      <div class="modal-body">
+        <div id="modalJabatan" class="modal-badge">Jabatan</div>
+        <h3 id="modalNama" class="modal-name">Nama Anggota</h3>
+        <div id="modalNim" class="modal-nim">NIM: -</div>
+
+        <div class="modal-bio-box">
+          <div class="modal-bio-header">
+            <span class="modal-bio-title">Siapa Sosok Ini?</span>
+            <span id="modalWordCount" class="modal-word-count">~0 kata</span>
+          </div>
+          <p id="modalProfil" class="modal-bio-text"></p>
+        </div>
+
+        <div class="modal-meta-mini">
+          <div>Angkatan: <strong id="modalAngkatan">-</strong></div>
+          <div>Instagram: <strong id="modalIg">-</strong></div>
+        </div>
+
+        <button type="button" class="modal-back-btn" onclick="closeDetail()">← Tutup Jendela Profil</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    @dpmfhunmermlg | Jumbatan Suara Pengawal Hak Mahasiswa | linktr.ee/DPMFH
+  </footer>
+
+  <script>
+    function filterData(kategori, tombol) {
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      tombol.classList.add('active');
+
+      document.querySelectorAll('.section-block').forEach(sec => {
+        if (kategori === 'all' || sec.dataset.category === kategori) {
+          sec.classList.remove('hidden');
+        } else {
+          sec.classList.add('hidden');
+        }
+      });
+    }
+
+    // === DATA SOSOK ANGGOTA BPH & KOMISI A-E (RUANG ~200 KATA) ===
+    const dataAnggota = {
+      "24010000013": {
+        nama: "Jonathan Ferdin Karan",
+        jabatan: "Ketua Umum DPM-FH",
+        nim: "24010000013",
+        angkatan: "2024",
+        foto: "foto/24010000013.jpg",
+        ig: "@dpmfhunmermlg",
+        profil: "Jonathan Ferdin Karan merupakan figur penggerak utama di Dewan Perwakilan Mahasiswa Fakultas Hukum Universitas Merdeka Malang periode 2026/2027. Sebagai Ketua Umum, ia dikenal mengedepankan pendekatan yang terukur, terbuka terhadap aspirasi mahasiswa, dan tegas dalam menjaga marwah fungsi legislasi serta pengawasan lembaga kemahasiswaan di lingkungan fakultas.\n\nDalam keseharian berorganisasi, Jonathan berperan menghubungkan komunikasi antara pengurus harian, koordinator komisi, pihak eksekutif fakultas, hingga jajaran pimpinan birokrasi. Ia mendorong terciptanya ruang diskusi yang sehat agar setiap kebijakan dan program kerja yang berjalan benar-benar menjawab kebutuhan mahasiswa hukum.\n\nBagi Jonathan, berorganisasi bukan sekadar mengejar formalitas jabatan, melainkan wadah belajar mengambil keputusan secara adil, bertanggung jawab, dan berlandaskan etika. Dengan ritme kerja yang konsisten dan sikap merangkul berbagai karakter anggota, ia berupaya memastikan roda organisasi DPM-FH berjalan solid, tertib, dan berdampak nyata bagi civitas akademika Fakultas Hukum UNMER Malang sepanjang satu periode kepengurusan."
+      },
+      "24010000019": {
+        nama: "Fawwazy Hassan Vendra",
+        jabatan: "Sekretaris Jenderal DPM-FH",
+        nim: "24010000019",
+        angkatan: "2024",
+        foto: "sekjen.jpeg",
+        ig: "@dpmfhunmermlg",
+        profil: "Fawwazy Hassan Vendra, dikenal sebagai Mas Mullet FH, merupakan mahasiswa Fakultas Hukum UNMER Malang yang populer berkat paras rupawan, rambut mullet khas, dan pesonanya yang menjadi rebutan para mahasiswi. Popularitasnya melahirkan dua fandom, FAWKUN dan FAWLET (FAWMULLET). Di balik pesonanya, ia dikenal cerdas, kritis, dan berwawasan luas. Sebagai Sekretaris Jenderal DPM-FH UNMER Malang periode 2026/2027, ia turut menjaga roda organisasi tetap tertib dan terarah ANJAZZZZZZZ."
+      },
+      "25010000036": {
+        nama: "Azril Ardiansyah",
+        jabatan: "Wakil Sekretaris Jenderal",
+        nim: "25010000036",
+        angkatan: "2025",
+        foto: "foto/25010000036.jpg",
+        ig: "@dpmfhunmermlg",
+        profil: "Azril Ardiansyah hadir sebagai Wakil Sekretaris Jenderal DPM-FH UNMER Malang yang mendampingi pengelolaan administrasi dan kesekretariatan organisasi. Sebagai pengurus angkatan 2025, ia membawa energi segar, kecepatan adaptasi, serta kesiapan membantu berbagai kebutuhan teknis persuratan maupun persiapan kegiatan internal.\n\nDalam menjalankan perannya, Azril bekerja berdampingan memastikan kelengkapan berkas, pencatatan agenda, dan koordinasi administratif berjalan lancar tanpa hambatan. Ia belajar memahami tata kelola kelembagaan secara langsung dari proses sehari-hari, mulai dari menyusun catatan rapat hingga merapikan arsip kegiatan.\n\nKarakternya yang terbuka membuat proses koordinasi lintas angkatan terasa lebih luwes dan akrab. Azril memandang posisi wakil sekretaris jenderal sebagai ruang belajar kepemimpinan administratif yang melatih ketelitian, manajemen waktu, dan kepekaan terhadap kebutuhan tim. Dengan semangat belajar dan kerja sama yang kuat, ia turut menjaga agar sistem kesekretariatan DPM-FH tetap sigap dan tertata sepanjang periode."
+      },
+      "24010000020": {
+        nama: "Tsalis Maulidiyah Nur Aini",
+        jabatan: "Bendahara Umum",
+        nim: "24010000020",
+        angkatan: "2024",
+        foto: "bendum.jpeg",
+        ig: "@dpmfhunmermlg",
+        profil: "Tsalis Maulidiyah Nur Aini dipercaya memegang tanggung jawab sebagai Bendahara Umum DPM-FH UNMER Malang periode 2026/2027. Peran ini menuntut ketelitian tinggi, kejujuran, serta konsistensi dalam mencatat setiap pemasukan, pengeluaran, dan perencanaan anggaran internal organisasi.\n\nDalam keseharian kepengurusan, Tsalis memastikan pengelolaan dana berlangsung tertib sesuai peruntukan serta didukung bukti dan rekapitulasi yang jelas. Ia turut membantu mengarahkan pengurus maupun komisi agar penyusunan kebutuhan dana kegiatan dilakukan secara realistis dan terukur.\n\nSosoknya dikenal teliti dan terstruktur saat berhadapan dengan angka maupun laporan pertanggungjawaban. Bagi Tsalis, tata kelola keuangan yang sehat merupakan cerminan integritas organisasi di hadapan seluruh anggota dan civitas akademika. Melalui ketekunan dalam pencatatan dan keterbukaan informasi keuangan, ia berupaya menjaga kepercayaan serta keberlanjutan program kerja DPM-FH selama satu periode kepengurusan."
+      },
+      "25010000152": {
+        nama: "Indra Haryanto Nurlette",
+        jabatan: "Koordinator Komisi A (Pengkajian Kebijakan & Strategi Gerakan)",
+        nim: "25010000152",
+        angkatan: "2025",
+        foto: "foto/25010000152.jpg",
+        ig: "@dpmfhunmermlg",
+        profil: "Indra Haryanto Nurlette memimpin Komisi A yang bergerak di bidang Pengkajian Kebijakan dan Strategi Gerakan DPM-FH UNMER Malang. Sebagai koordinator, ia mengarahkan anggota komisi untuk membaca dinamika isu kampus secara kritis, objektif, dan berbasis argumen yang kuat.\n\nKomisi A memiliki peran penting dalam menelaah aturan internal, merumuskan pokok pikiran strategis, serta merancang langkah advokasi kebijakan yang berpihak pada kepentingan mahasiswa. Indra mendorong diskusi yang analitis agar setiap kajian yang lahir tidak berhenti pada wacana, tetapi memiliki arah gerak yang jelas.\n\nDengan sikap kepemimpinan yang komunikatif dan terbuka terhadap sudut pandang anggota tim, ia membangun suasana kerja komisi yang aktif bertukar gagasan. Indra memandang kerja kajian dan strategi sebagai ruang mengasah nalar kritis mahasiswa hukum dalam menyikapi persoalan kelembagaan secara dewasa, sistematis, dan bertanggung jawab."
+      },
+      "25010000025": {
+        nama: "Kayla Azzahra",
+        jabatan: "Anggota Komisi A (Pengkajian Kebijakan & Strategi Gerakan)",
+        nim: "25010000025",
+        angkatan: "2025",
+        foto: "foto/25010000025.jpg",
+        ig: "@dpmfhunmermlg",
+        profil: "Kayla Azzahra merupakan anggota Komisi A DPM-FH UNMER Malang yang terlibat dalam proses pengkajian kebijakan serta perumusan strategi gerakan mahasiswa. Di komisi ini, ia turut berproses mempelajari bagaimana sebuah isu atau aturan dianalisis sebelum dituangkan menjadi rekomendasi maupun sikap organisasi.\n\nMelalui keterlibatannya dalam diskusi dan penyusunan kajian, Kayla terbiasa mencermati detail informasi, membandingkan berbagai perspektif, serta menyusun poin-poin gagasan secara runtut. Pengalaman ini menjadi sarana berharga untuk melatih ketajaman analisis sekaligus keberanian menyampaikan pendapat di forum.\n\nSebagai bagian dari tim Komisi A, Kayla mendukung terciptanya kerja sama yang solid dan saling melengkapi antaranggota. Ia melihat peran legislasi dan kajian kebijakan sebagai bagian penting dari upaya menjaga kualitas tata kelola fakultas agar tetap aspiratif dan relevan bagi mahasiswa."
+      },
+      "25010000122": {
+        nama: "Arya Hilmi Rosyad",
+        jabatan: "Koordinator Komisi B (Pendidikan, Penelitian, Advokasi & Kesma)",
+        nim: "25010000122",
+        angkatan: "2025",
+        foto: "komisiaco.jpeg",
+        ig: "@dpmfhunmermlg",
+        profil: "Arya Hilmi Rosyad mengoordinasikan Komisi B yang membidangi Pendidikan, Penelitian, Advokasi, dan Kesejahteraan Mahasiswa di DPM-FH UNMER Malang. Bidang ini bersentuhan langsung dengan kebutuhan sehari-hari mahasiswa, mulai dari urusan akademik, fasilitas belajar, hingga penyaluran aspirasi dan advokasi.\n\nSebagai koordinator, Arya berupaya memastikan setiap keluhan atau masukan mahasiswa dapat didengar, dipetakan, dan ditindaklanjuti melalui jalur komunikasi yang tepat. Ia mengajak anggota komisi untuk peka terhadap persoalan nyata di sekitar lingkungan perkuliahan.\n\nDengan gaya koordinasi yang lugas dan responsif, Arya mendorong Komisi B menjadi jembatan penghubung yang dekat dengan mahasiswa sekaligus konstruktif saat berdialog dengan pihak fakultas. Baginya, memperjuangkan kesejahteraan dan kualitas pendidikan mahasiswa membutuhkan empati, data yang akurat, serta ketekunan mengawal proses hingga tuntas."
+      },
+      "25010000211": {
+        nama: "Yolan Cristiani Nahak",
+        jabatan: "Anggota Komisi B (Pendidikan, Penelitian, Advokasi & Kesma)",
+        nim: "25010000211",
+        angkatan: "2025",
+        foto: "foto/25010000211.jpg",
+        ig: "@dpmfhunmermlg",
+        profil: "Yolan Cristiani Nahak aktif sebagai anggota Komisi B DPM-FH UNMER Malang yang fokus pada isu pendidikan, penelitian, advokasi, dan kesejahteraan mahasiswa. Dalam keseharian komisi, ia ikut membantu menjaring aspirasi rekan-rekan mahasiswa serta mendiskusikan solusi atas kendala yang muncul di lingkungan akademik.\n\nPeran di Komisi B menuntut kepekaan mendengarkan serta kemampuan menyusun laporan aspirasi secara jelas dan objektif. Yolan berproses memahami bagaimana advokasi dilakukan secara beretika dan terstruktur agar hak serta kebutuhan mahasiswa dapat diperjuangkan secara optimal.\n\nDikenal kooperatif di dalam tim, Yolan berkontribusi menjaga semangat kolaborasi Komisi B agar tetap sigap merespons dinamika mahasiswa. Ia memandang keterlibatan di bidang kesma dan advokasi sebagai bentuk kepedulian nyata terhadap sesama mahasiswa Fakultas Hukum UNMER Malang."
+      },
+      "25010000131": {
+        nama: "Nur Azizah Salsabila",
+        jabatan: "Anggota Komisi B (Pendidikan, Penelitian, Advokasi & Kesma)",
+        nim: "25010000131",
+        angkatan: "2025",
+        foto: "foto/25010000131.jpg",
+        ig: "@dpmfhunmermlg",
+        profil: "Nur Azizah Salsabila bertugas sebagai anggota Komisi B DPM-FH UNMER Malang yang mendampingi agenda pendidikan, penelitian, advokasi, dan kesejahteraan mahasiswa. Ia terlibat dalam pengumpulan informasi lapangan, diskusi isu akademik, serta pengawalan program yang berkaitan dengan kenyamanan belajar mahasiswa.\n\nMelalui aktivitas di Komisi B, Azizah mengasah kemampuan komunikasi dan ketelitian dalam mencatat berbagai masukan dari mahasiswa lintas angkatan. Setiap aspirasi dipandang sebagai bahan evaluasi penting untuk mendorong perbaikan layanan maupun iklim akademik di fakultas.\n\nDengan pendekatan yang ramah dan penuh perhatian, ia membantu menjaga kekompakan tim komisi saat menjalankan tugas-tugas advokasi dan pendataan kesejahteraan. Bagi Azizah, menjadi bagian dari Komisi B adalah kesempatan untuk hadir, mendengar, dan memberi kontribusi positif bagi lingkungan kampus."
+      },
+      "24010000015": {
+        nama: "Dinul Qoyyimah Wahdaniyah",
+        jabatan: "Koordinator Komisi C (Hubungan Mahasiswa & Masyarakat)",
+        nim: "24010000015",
+        angkatan: "2024",
+        foto: "foto/24010000015.jpg",
+        ig: "@dpmfhunmermlg",
+        profil: "Dinul Qoyyimah Wahdaniyah memimpin Komisi C yang berfokus pada Hubungan Mahasiswa dan Masyarakat di DPM-FH UNMER Malang. Sebagai koordinator, ia mengarahkan komisi untuk membangun relasi yang harmonis, baik di dalam lingkup mahasiswa fakultas maupun dengan pihak eksternal dan masyarakat luas.\n\nKomisi C berperan penting menjaga citra dan komunikasi publik organisasi agar informasi kegiatan serta peran DPM-FH tersampaikan secara jelas. Dinul mendorong pendekatan komunikasi yang santun, adaptif, dan inklusif sehingga hubungan antarlembaga maupun komunitas dapat terjalin dengan baik.\n\nDengan pengalaman berorganisasi dan pembawaan yang terarah, ia membimbing anggota komisi untuk merancang agenda relasi dan kolaborasi yang bermanfaat. Dinul meyakini bahwa kekuatan organisasi juga bertumbuh dari kemampuan menjalin jejaring yang saling menghargai dan memberi dampak positif di luar ruang sidang."
+      },
+      "25010000192": {
+        nama: "Kheisya Dentanaya Rizki Meilyta",
+        jabatan: "Anggota Komisi C (Hubungan Mahasiswa & Masyarakat)",
+        nim: "25010000192",
+        angkatan: "2025",
+        foto: "foto/25010000192.jpg",
+        ig: "@dpmfhunmermlg",
+        profil: "Kheisya Dentanaya Rizki Meilyta merupakan anggota Komisi C DPM-FH UNMER Malang yang berperan dalam memperkuat hubungan mahasiswa dan masyarakat. Ia terlibat dalam mendukung komunikasi publik, koordinasi relasi antaranggota, serta pelaksanaan program yang menghubungkan fakultas dengan lingkungan sekitar.\n\nSebagai bagian dari Komisi C, Kheisya belajar membangun komunikasi dua arah yang efektif agar mahasiswa merasa dekat dan mudah menyampaikan pandangan. Ia juga turut berproses mengelola interaksi lintas pihak dengan sikap terbuka dan sopan.\n\nSemangat kolaboratifnya membantu menjaga dinamika kerja tim komisi tetap hidup dan solid. Kheisya melihat bidang hubungan mahasiswa dan masyarakat sebagai ruang strategis untuk melatih keterampilan bersosialisasi, berjejaring, serta menumbuhkan kepedulian sosial mahasiswa hukum."
+      },
+      "25010000039": {
+        nama: "Nadinfah Belvana H.N",
+        jabatan: "Anggota Komisi C (Hubungan Mahasiswa & Masyarakat)",
+        nim: "25010000039",
+        angkatan: "2025",
+        foto: "foto/25010000039.jpg",
+        ig: "@dpmfhunmermlg",
+        profil: "Nadinfah Belvana H.N bergabung sebagai anggota Komisi C DPM-FH UNMER Malang yang menangani aspek hubungan mahasiswa dan masyarakat. Ia turut berkontribusi dalam mendukung agenda komunikasi eksternal, menjalin relasi, serta menyampaikan informasi kelembagaan kepada mahasiswa.\n\nDalam keseharian tugasnya, Nadinfah berlatih menyesuaikan gaya komunikasi sesuai konteks dan audiens agar pesan yang disampaikan mudah dipahami. Keterlibatannya di Komisi C juga menjadi sarana memperluas wawasan mengenai dinamika hubungan antarlembaga kemahasiswaan maupun masyarakat.\n\nDengan sikap yang hangat dan siap bekerja sama, Nadinfah mendukung kelancaran berbagai program Komisi C. Ia memandang peran ini sebagai langkah penting untuk memperkuat keterhubungan DPM-FH dengan mahasiswa serta masyarakat luas secara berkelanjutan."
+      },
+      "25010000064": {
+        nama: "Herlina Anjelina",
+        jabatan: "Koordinator Komisi D (Pengembangan Organisasi)",
+        nim: "25010000064",
+        angkatan: "2025",
+        foto: "foto/25010000064.jpg",
+        ig: "@dpmfhunmermlg",
+        profil: "Herlina Anjelina mengoordinasikan Komisi D yang berfokus pada Pengembangan Organisasi di DPM-FH UNMER Malang. Komisi ini memiliki tanggung jawab strategis dalam mengawasi kinerja kelembagaan serta mendorong penguatan kapasitas dan tata kelola organisasi mahasiswa.\n\nSebagai koordinator, Herlina berupaya membangun pola pengawasan yang objektif, konstruktif, dan berorientasi pada perbaikan berkelanjutan. Ia mengajak anggota komisi untuk mencermati jalannya program kerja dan dinamika internal secara cermat namun tetap mengedepankan komunikasi yang sehat.\n\nDengan ketegasan yang diimbangi sikap terbuka, ia membimbing tim Komisi D agar bekerja kompak dan konsisten. Herlina memandang pengembangan organisasi sebagai kunci agar lembaga kemahasiswaan di Fakultas Hukum tetap tumbuh profesional, tertib aturan, dan mampu mencetak kader yang berkualitas."
+      },
+      "25010000144": {
+        nama: "Peon Kulla",
+        jabatan: "Anggota Komisi D (Pengembangan Organisasi)",
+        nim: "25010000144",
+        angkatan: "2025",
+        foto: "foto/25010000144.jpg",
+        ig: "@dpmfhunmermlg",
+        profil: "Peon Kulla berperan sebagai anggota Komisi D DPM-FH UNMER Malang yang terlibat dalam bidang pengembangan organisasi dan pengawasan kinerja kelembagaan. Ia membantu memantau pelaksanaan agenda organisasi serta berdiskusi mengenai evaluasi dan peningkatan kualitas tata kelola.\n\nMelalui kegiatan di Komisi D, Peon belajar memahami mekanisme kontrol organisasi, kedisiplinan pengurus, serta pentingnya kesesuaian antara perencanaan dan pelaksanaan program kerja. Proses ini melatih ketelitian dan sikap objektif dalam menilai suatu kegiatan.\n\nIa dikenal mudah berbaur dan mendukung kerja sama tim komisi dalam setiap agenda. Bagi Peon, keterlibatan di Komisi D menjadi pengalaman berharga untuk memahami seluk-beluk pengelolaan organisasi mahasiswa secara lebih mendalam."
+      },
+      "26010000181": {
+        nama: "Gerilya Rafid Pratama",
+        jabatan: "Anggota Komisi D (Pengembangan Organisasi)",
+        nim: "26010000181",
+        angkatan: "2026",
+        foto: "foto/26010000181.jpg",
+        ig: "@dpmfhunmermlg",
+        profil: "Gerilya Rafid Pratama merupakan anggota Komisi D DPM-FH UNMER Malang yang turut memperkuat bidang pengembangan organisasi. Sebagai salah satu pengurus dari angkatan 2026, ia membawa semangat baru dan antusiasme tinggi untuk belajar langsung mengenai dinamika kelembagaan di fakultas.\n\nDi Komisi D, Gerilya terlibat dalam mendukung proses pemantauan program, penguatan kaderisasi, serta diskusi seputar tertib organisasi. Ia memanfaatkan kesempatan ini untuk menyerap banyak pengalaman dari senior dan rekan satu komisi.\n\nDengan sikap aktif dan kemauan belajar yang kuat, Gerilya menjadi bagian dari energi regenerasi di lingkungan DPM-FH. Ia berharap perannya di Komisi D dapat membantu menjaga semangat organisasi tetap segar, solid, dan terus berkembang."
+      },
+      "24010000006": {
+        nama: "Shakira Sendy Aulia Lawalata",
+        jabatan: "Koordinator Komisi E (Pengawasan Anggaran)",
+        nim: "24010000006",
+        angkatan: "2024",
+        foto: "foto/24010000006.jpg",
+        ig: "@dpmfhunmermlg",
+        profil: "Shakira Sendy Aulia Lawalata memimpin Komisi E yang menjalankan fungsi Pengawasan Anggaran di DPM-FH UNMER Malang. Peran komisi ini sangat krusial dalam memastikan pengelolaan dana organisasi mahasiswa berjalan transparan, akuntabel, dan sesuai dengan perencanaan yang disepakati.\n\nSebagai koordinator, Shakira mengarahkan tim untuk menelaah Rancangan Anggaran Biaya (RAB), mencermati alokasi dana kegiatan, serta melakukan evaluasi laporan pertanggungjawaban keuangan secara teliti. Ia menekankan pentingnya ketertiban administrasi anggaran demi menjaga kepercayaan seluruh pihak.\n\nDengan pembawaan yang cermat dan komunikatif, Shakira membimbing anggota komisi agar mampu berdiskusi secara konstruktif terkait pengelolaan anggaran. Baginya, pengawasan anggaran bukan sekadar memeriksa angka, melainkan memastikan setiap dana kemahasiswaan digunakan secara tepat sasaran dan dapat dipertanggungjawabkan."
+      },
+      "24010000153": {
+        nama: "Eltria Natsya Ghello",
+        jabatan: "Anggota Komisi E (Pengawasan Anggaran)",
+        nim: "24010000153",
+        angkatan: "2024",
+        foto: "foto/24010000153.jpg",
+        ig: "@dpmfhunmermlg",
+        profil: "Eltria Natsya Ghello bertugas sebagai anggota Komisi E DPM-FH UNMER Malang yang fokus pada pengawasan dan evaluasi anggaran. Ia terlibat dalam proses pemeriksaan kesesuaian anggaran kegiatan serta pencatatan catatan evaluasi keuangan.\n\nBekerja di bidang pengawasan anggaran menuntut ketelitian, kesabaran, dan sikap objektif terhadap data. Eltria turut membantu memastikan proses verifikasi berlangsung rapi sehingga transparansi penggunaan anggaran dapat terjaga dengan baik.\n\nIa dikenal solid saat bekerja sama dalam tim dan konsisten menjalankan tugas yang diberikan. Melalui peran di Komisi E, Eltria berkontribusi menjaga akuntabilitas finansial organisasi agar setiap program kerja dapat berjalan tertib dan terukur."
+      },
+      "24010000148": {
+        nama: "Chintia Hidayat Yapardi",
+        jabatan: "Anggota Komisi E (Pengawasan Anggaran)",
+        nim: "24010000148",
+        angkatan: "2024",
+        foto: "foto/24010000148.jpg",
+        ig: "@dpmfhunmermlg",
+        profil: "Chintia Hidayat Yapardi merupakan anggota Komisi E DPM-FH UNMER Malang yang berperan dalam mendukung fungsi pengawasan anggaran organisasi. Ia ikut terlibat dalam mencermati dokumen anggaran, rekapitulasi penggunaan dana, serta penyusunan catatan evaluasi.\n\nDalam menjalankan tugasnya, Chintia mengedepankan ketelitian dan kerapihan agar setiap rincian anggaran dapat dipahami dengan jelas. Ia berproses bersama komisi untuk mendorong budaya pengelolaan keuangan yang disiplin dan terbuka.\n\nDengan kerja sama yang baik bersama rekan-rekan di Komisi E, Chintia membantu memastikan fungsi pengawasan berjalan efektif. Ia memandang transparansi anggaran sebagai elemen penting dalam mewujudkan tata kelola organisasi mahasiswa yang sehat dan terpercaya."
+      }
+    };
+
+    const modal = document.getElementById('memberModal');
+
+    function hitungKata(teks) {
+      const bersih = (teks || '').trim();
+      if (!bersih) return 0;
+      return bersih.split(/\s+/).length;
+    }
+
+    function openDetail(nim) {
+      const m = dataAnggota[nim];
+      if (!m) return;
+
+      document.getElementById('modalPhoto').src = m.foto;
+      document.getElementById('modalJabatan').textContent = m.jabatan;
+      document.getElementById('modalNama').textContent = m.nama;
+      document.getElementById('modalNim').textContent = 'NIM: ' + m.nim;
+      document.getElementById('modalProfil').textContent = m.profil;
+      document.getElementById('modalWordCount').textContent = hitungKata(m.profil) + ' kata';
+      document.getElementById('modalAngkatan').textContent = m.angkatan;
+      document.getElementById('modalIg').textContent = m.ig;
+
+      modal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDetail() {
+      modal.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    function closeDetailOnBg(e) {
+      if (e.target === modal) {
+        closeDetail();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('show')) {
+        closeDetail();
+      }
+    });
+
+    const audio = document.getElementById('bgAudio');
+    const audioBtn = document.getElementById('audioToggle');
+
+    function toggleAudio() {
+      if (audio.paused) {
+        audio.play();
+        audioBtn.textContent = '🔊 ';
+      } else {
+        audio.pause();
+        audioBtn.textContent = '🔇';
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      audio.play().then(() => {
+        audioBtn.textContent = '🔊';
+      }).catch(() => {
+        audioBtn.textContent = '🔇';
+        ['click', 'touchstart', 'scroll'].forEach(evt => {
+          window.addEventListener(evt, function startOnce() {
+            audio.play().then(() => {
+              audioBtn.textContent = '🔊';
+            }).catch(() => {});
+            window.removeEventListener(evt, startOnce);
+          }, { once: true });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
